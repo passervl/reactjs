@@ -1,0 +1,40 @@
+.App {
+  text-align: center;
+}
+
+.table, .box{
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+}
+
+.table{
+  margin: 10px auto;
+  width: 95vh;
+  height: 95vh;
+  border: 2px black solid;
+}
+
+.box{
+  margin: 0;
+  padding: 0;
+  width: 30vh;
+  height: 30vh;
+  background-color: antiquewhite;
+  border: 2px black solid;
+}
+.ele{
+  margin: 0;
+  padding: 0;
+  border: 1px black solid;
+  background-color: aliceblue;
+  display: flex;
+  width: 30%;
+  height: 30%;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
