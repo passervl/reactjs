@@ -6,7 +6,7 @@ export default function DataSrc() {
 
     let rNum = [];
     let upNum = [];
-    function RNum(){
+    function RNum() {
         do {
             rNum.push(num());
             rNum.forEach(ele => {
@@ -15,7 +15,7 @@ export default function DataSrc() {
                 }
             });
         } while (rNum.length < 9)
-        return upNum;        
+        return upNum;
     }
     const RdNum = RNum();
     return [
