@@ -1,57 +1,67 @@
 
 export default function DataSrc() {
     function num() {
-        return Math.floor(Math.random() * 9)
+        return Math.floor(Math.random() * 9 + 1)
     }
 
-    const rNum = [];
-    for (let i = 0; i < 9; i++) {
-        rNum.push(num())
+    let rNum = [];
+    let upNum = [];
+    function RNum(){
+        do {
+            rNum.push(num());
+            rNum.forEach(ele => {
+                if (!upNum.some(e => e === ele)) {
+                    upNum.push(...ele)
+                }
+            });
+        } while (rNum.length < 9)
+        return upNum;        
     }
-  return [
+    const RdNum = RNum();
+    return [
         {
             id: 1,
-            text: rNum[0],
+            text: RdNum[0],
             on: true,
         },
         {
             id: 2,
-            text: rNum[1],
+            text: RdNum[1],
             on: true,
         },
         {
             id: 3,
-            text: rNum[2],
+            text: RdNum[2],
             on: true,
         },
         {
             id: 4,
-            text: rNum[3],
+            text: RdNum[3],
             on: true,
         },
         {
             id: 5,
-            text: rNum[4],
+            text: RdNum[4],
             on: true,
         },
         {
             id: 6,
-            text: rNum[5],
+            text: RdNum[5],
             on: true,
         },
         {
             id: 7,
-            text: rNum[6],
+            text: RdNum[6],
             on: true,
         },
         {
             id: 8,
-            text: rNum[7],
+            text: RdNum[7],
             on: true,
         },
         {
             id: 9,
-            text: rNum[8],
+            text: RdNum[8],
             on: true,
         },
     ]
