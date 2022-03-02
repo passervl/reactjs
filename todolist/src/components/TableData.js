@@ -1,31 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-//Small functions
-function Table(props) {
-    const { arr, handleEdit, handleStatus, isBtn, setIsBtn, setIsData, setIsSearch } = props;
-    return <div className='table'>
-        <div className='tableHead'>
-            <h3>No.</h3>
-            <h3 className='tableName'>Todo Name</h3>
-            <h3>Time</h3>
-            <h3>Level</h3>
-            <h3>Status</h3>
-        </div>
-        {arr.map((ele, index) => {
-            let { id, todoName, time, level, status } = ele;
-            return <div className='tableBody' key={id} id={id} onClick={handleEdit}>
-                <div>{index + 1}</div>
-                <div className='tableName'>{todoName}</div>
-                <div>{time}</div>
-                <div>{level}</div>
-                <div>{id && <button className="btn" value={status}
-                    onClick={handleStatus}>{!status ? 'Done' : 'Recheck'}</button>}
-                </div>
-            </div>;
-        })}
-        {isBtn && <div className='tableBody clBtn'><button className="btn bt " onClick={() => { setIsSearch(false); setIsBtn(false); setIsData(true) }}><strong>Close</strong></button></div>}
-    </div>;
-}
+import Table from "./Table";
 
 //Main function
 const TableData = () => {
@@ -119,7 +93,7 @@ You can do it`)
                     <button type='reset' className='btn' onClick={() => setData(dfData)}>Reset</button>
                 </div>
             </div>}
-            {!addShow && <button className='btn' type='button' onClick={() => { setAddShow(true); setData(dfData) }}>Add Something Enjoyable</button>}
+            {!addShow && <button className='btn' type='button' onClick={() => { setAddShow(true); setData(dfData); setIsSearch(false); setIsData(true) }}>Add Something Enjoyable</button>}
         </form>
         {isData && <Table arr={mega}
             handleEdit={handleEdit} handleStatus={handleStatus} />}
