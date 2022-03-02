@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 //Small functions
 function Table(props) {
@@ -69,17 +69,19 @@ You can do it`)
             const newData = { ...data, id: new Date().getTime().toString() };
             setMega([...mega, newData]);
         } else alert('Missing some information')
-        console.log(data, mega);
+        console.log(data);
         setData(dfData);
         setAddShow(false);
     };
     const handleSearch = () => { setIsSearch(true); setIsBtn(true); setIsData(false) }
-    const searchVl = () => { return mega.filter(ele => ele.todoName.toLowerCase().includes(search.toLowerCase())) }
-
+    const searchVl = () => mega.filter(ele => ele.todoName.toLowerCase().includes(search))
+    useEffect(() => {
+        console.log(mega);
+    }, [mega]);
     //Main
     return <div className='container'>
         <div><input type="text" name="search" placeholder="What's you're looking for?" value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value.toLowerCase())}
             onKeyPress={e => { if (e.key === 'Enter') { handleSearch() } }} />
             <button type="search" onClick={handleSearch}>Search</button>
         </div>
