@@ -1,5 +1,5 @@
 
-export const data = [
+export const books = [
     {
         id: 1,
         img: 'https://m.media-amazon.com/images/I/41cSSjZRfwS._PJku-sticker-v7,TopRight,0,-50._SY300_.jpg',
@@ -9,7 +9,7 @@ export const data = [
     {
         id: 2,
         img: 'https://m.media-amazon.com/images/I/41697tuPRTL._PJku-sticker-v7,TopRight,0,-50._SY300_.jpg',
-        tittle: "The Lobotomist's Wife: A Novel",
+        tittle: "The Lobotomist 's Wife: A Novel",
         review: '5,759'
     },
     {
@@ -37,4 +37,3 @@ export const data = [
         review: "2,859",
     },
 ]
-export default data;

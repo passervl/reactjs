@@ -1,0 +1,145 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+body::after {
+  content: "";
+  z-index: -2;
+  background-image: url(./pics/photo-1529788295308-1eace6f67388.jpeg);
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  opacity: 0.9;
+}
+
+.App {
+  text-align: center;
+}
+
+.hide {
+  display: none !important;
+}
+
+.btn {
+  background-color: antiquewhite;
+  text-align: center;
+  font-weight: 700;
+  max-width: fit-content;
+  border-radius: 1rem;
+}
+
+/* Head */
+
+.head {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.navBar {
+  display: inline-flex;
+  width: max-content;
+  gap: 2rem;
+  margin-left: 0;
+}
+.headBar {
+  list-style: none;
+}
+.headBar > a {
+  color: yellow;
+  text-decoration: none;
+}
+/* Search container */
+.search {
+  background-color: bisque;
+  width: 100%;
+  height: max-content;
+  padding-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+.clBtn {
+  border-top: 1px black solid;
+  padding: 0.25rem 0;
+}
+.bt {
+  grid-column: 1 / span 7;
+  margin: auto;
+}
+/* Create container */
+.container {
+  margin: 2rem 1rem;
+  padding: 0;
+  width: 80vw;
+}
+.createContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.create {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  width: 60vw;
+  padding: 0.5rem 2rem;
+  background-color: aliceblue;
+  border-radius: 2rem;
+}
+.create * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.todoName {
+  grid-column: 1 / span 2;
+}
+.button {
+  display: flex;
+  grid-column: 1 / span 4;
+  justify-content: center;
+  margin: 0.5rem;
+}
+
+.table {
+  font-weight: 500;
+  display: flex;
+  margin: 2rem;
+  border-radius: 10px;
+  border: 1px solid black;
+  flex-direction: column;
+  background-color: beige;
+  opacity: 0.8;
+}
+.tableHead,
+.tableBody {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.tableHead *,
+.tableBody div {
+  border-left: 1px black solid;
+  height: 2rem;
+}
+.tableBody div {
+  border-top: 1px black solid;
+}
+.tableHead > :first-child,
+.tableBody > :first-child {
+  border-left: none;
+}
+.tableHead > h3 {
+  margin: 0;
+}
+.tableBody > div > label {
+  margin: 0;
+}
+.tableName {
+  grid-column: 2 / span 3;
+}

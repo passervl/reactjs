@@ -5,7 +5,7 @@ const Book = ({ img, tittle, review }) => {
   }
   return (
     <article className='book'>
-      <img src={img} alt='tittle' />
+      <img src={img} alt={tittle} />
       <h3>{tittle}</h3>
       <h4>{review}</h4>
       <div>

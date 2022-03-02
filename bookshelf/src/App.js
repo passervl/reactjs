@@ -1,18 +1,15 @@
 import './App.css';
-import { data } from './components/books'
+import { books } from './components/books'
 import Book from './components/Book';
 
 function App() {
   return (
     <section className='bookshelf'>
-      {data.map((book) => {
+      {books.map((book) => {
         return <Book {...book} key={book.id} />
       })}
     </section>
   );
 }
-
-
-
 
 export default App;
