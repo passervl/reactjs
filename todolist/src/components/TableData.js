@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react";
+import Search from "./Search";
 import Table from "./Table";
+
+//custom Hook
+const useLocalStringDt = (key, init) => {
+    const [value, setValue] = useState(localStorage.getItem(key) || init);
+    useEffect(() => {
+        localStorage.setItem(key, value);
+    }, [key, value]);
+    return [value, setValue]
+}
 
 //Main function
 const TableData = () => {
@@ -8,7 +18,7 @@ const TableData = () => {
     const [data, setData] = useState(dfData);
     const [mega, setMega] = useState([]);
     const [addShow, setAddShow] = useState(false);
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useLocalStringDt('search', 'Passer')
     const [isData, setIsData] = useState(true);
     const [isSearch, setIsSearch] = useState(false);
     const [isBtn, setIsBtn] = useState(false);
@@ -31,6 +41,12 @@ You can do it`)
         setData(curDt(id));
         setAddShow(true)
     }
+    // const InputForm = (props) => {
+    //     const { key, children, type, plH } = props
+    //     return <div><label htmlFor={key}>{children}: </label>
+    //         <input type={type} value={data.key} onChange={e => { console.log(e.target.value); setData({ ...data, key: e.target.value }) }} placeholder={plH} />
+    //     </div>
+    // }
     const handleChange = (e) => {
         const { name, value } = e.target;
         setData({ ...data, [name]: value });
@@ -39,28 +55,30 @@ You can do it`)
         e.preventDefault();
         if (data.id) {
             mega[mega.indexOf(curDt(data.id))] = data;
+            setData(dfData);
+            setAddShow(false);
         } else if (data.todoName && data.time && data.level) {
             const newData = { ...data, id: new Date().getTime().toString() };
             setMega([...mega, newData]);
+            setData(dfData);
+            setAddShow(false);
         } else alert('Missing some information')
         console.log(data);
-        setData(dfData);
-        setAddShow(false);
     };
     const handleSearch = () => { setIsSearch(true); setIsBtn(true); setIsData(false) }
     const searchVl = () => mega.filter(ele => ele.todoName.toLowerCase().includes(search))
+    const handleBtn = () => { setIsSearch(false); setIsBtn(false); setIsData(true) };
+    const handleClear = (e) => setMega(mega.filter(ele => ele.id !== e.target.parentNode.parentNode.id))
+    //Effect
     useEffect(() => {
         console.log(mega);
     }, [mega]);
     //Main
     return <div className='container'>
-        <div><input type="text" name="search" placeholder="What's you're looking for?" value={search}
-            onChange={(e) => setSearch(e.target.value.toLowerCase())}
-            onKeyPress={e => { if (e.key === 'Enter') { handleSearch() } }} />
-            <button type="search" onClick={handleSearch}>Search</button>
-        </div>
+        <Search search={search} setSearch={setSearch} handleSearch={handleSearch} />
         <form className='createContainer ' onSubmit={handleSubmit}>
             {addShow && <div className='create'>
+                {/* <InputForm key={data.todoName} type='text' plH="What you need to do" >Todo Name</InputForm>*/}
                 <div className='todoName'>
                     <label htmlFor='todoName'>Todo Name: </label>
                     <input placeholder="What's you wanna to do" name="todoName"
@@ -96,10 +114,11 @@ You can do it`)
             {!addShow && <button className='btn' type='button' onClick={() => { setAddShow(true); setData(dfData); setIsSearch(false); setIsData(true) }}>Add Something Enjoyable</button>}
         </form>
         {isData && <Table arr={mega}
-            handleEdit={handleEdit} handleStatus={handleStatus} />}
+            handleEdit={handleEdit} handleStatus={handleStatus} handleClear={handleClear} />}
         {isSearch && <Table arr={searchVl()}
-            isBtn={isBtn} setIsBtn={setIsBtn} setIsData={setIsData} setIsSearch={setIsSearch}
-            handleEdit={handleEdit} handleStatus={handleStatus} />}
+            isBtn={isBtn} handleBtn={handleBtn}
+            handleEdit={handleEdit} handleStatus={handleStatus} handleClear={handleClear} />}
     </div >
 }
 export default TableData;
+

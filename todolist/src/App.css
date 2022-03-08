@@ -125,7 +125,10 @@ body::after {
 .tableHead *,
 .tableBody div {
   border-left: 1px black solid;
-  height: 2rem;
+  min-height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .tableBody div {
   border-top: 1px black solid;
